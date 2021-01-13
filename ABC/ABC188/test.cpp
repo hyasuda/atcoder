@@ -7,19 +7,26 @@ using P = pair<int, int>;
 
 int main(){
 
-    int n;
-    cin >> n;
-    int n2 = 1 << n;
-    vector<int> a(n2);
-    rep(i, n2) cin >> a[i];
-    map<int, int> mp;
-    rep(i, n2) mp[a[i]] = i+1;
-    while( a.size() > 2 ){
+    vector<P> v;
+    v.emplace_back( 1, 10);
+    v.emplace_back( 2, 20);
+    v.emplace_back( 3, 30);
 
+    cout << "First : " << endl;
+    for( auto a : v ){
+        cout << a.first << "\t" << a.second << endl;
     }
+    cout << endl;
 
-    int ans = min(a[0], a[1]);
-    // cout << ans << endl;
-    cout << mp[ans] << endl;
+    v.emplace_back( 1, 5  );
+    v.emplace_back( 2, -1 );
+    v.emplace_back( 3, 0  );
 
+    cout << "Second : " << endl;
+    for( auto a : v ){
+        cout << a.first << "\t" << a.second << endl;
+    }
+    cout << endl;
+    
+    return 0;
 }
