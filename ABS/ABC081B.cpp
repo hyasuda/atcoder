@@ -1,38 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-vector<long long> vector_devided(vector<long long> a) {
-    for( long long i = 0 ; i < a.size() ; i++ ){
-        a[i] = a[i]/2;
-    }
-    return a;
-}
-
-bool vector_even(vector<long long> a) {
-    for( long long i = 0 ; i < a.size() ; i++ ){
-        if( a[i]%2 != 0 || a[i] == 0 ) return false;
-    }
-    return true;
-}
+// #define rep(i, n) for (int i = 0; i < n; ++i)
 
 int main() {
     int n;
     cin >> n;
-
-    vector<long long>a(n, 0);
-    for( int i = 0 ; i < n ; i++ ) {
-        cin >> a[i];
+    vector<int> A(n, 0);
+    for (int i = 0; i < n; ++i) {
+        cin >> A[i];
     }
+
     int ans = 0;
-    int iline = 0;
-    while( vector_even( a ) ){
-        a = vector_devided( a );
-        ans++;
-        iline++;
-        if( iline == 10) break;
+
+    while (true) {
+        bool exist_odd = false;
+        for (int i = 0; i < n; ++i) {
+            if (A[i] % 2 != 0) exist_odd = true;
+        }
+
+        if (exist_odd) break;
+
+        for (int i = 0; i < n; ++i) {
+            A[i] /= 2;
+        }
+        ++ans;
     }
 
     cout << ans << endl;
-
 }
-
