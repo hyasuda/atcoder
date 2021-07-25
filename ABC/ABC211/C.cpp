@@ -1,30 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
-const long long MAX_N = 10000;
-
-const string chokudai = {"chokudai"};
-string s;
-
-int ans = 0;
-
-void search_chokudai(int i, int j) {
-    if( j == chokudai.size() ) {
-        ans++;
-        return;
-    }
-    if( s[i] == chokudai[j] ){
-        cout << i << " " << s[i] << " " << chokudai[j] << endl;
-        search_chokudai( i+1, j+1 );
-    } else {
-        cout << i << " : skip" << endl;
-        p = make_pair(i, j);
-        search_chokudai( i+1, j   );
-    }
-}
+#define rep(i, n) for (int i = 0; i < (n); ++i)
 
 int main() {
+    string s;
     cin >> s;
-    search_chokudai( 0, 0 );
-    cout << p.first << " " << p.second << endl;
-    cout << ans << endl;
+    int n = s.size();
+    vector<vector<int>> dp(n + 1, vector<int>(9));
+    rep(i, n + 1) dp[i][0] = 1;
+    const int mod = 1000000007;
+    string t = "chokudai";
+    rep(i, n) rep(j, 9) {
+        if (s[i] != t[j]) {
+            dp[i + 1][j + 1] = dp[i][j + 1];
+        } else {
+            dp[i + 1][j + 1] = (dp[i][j + 1] + dp[i][j]) % mod;
+        }
+    }
+    cout << dp[n][8] << endl;
+    return 0;
 }
